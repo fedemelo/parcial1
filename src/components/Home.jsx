@@ -1,6 +1,6 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Table, Row, Col } from 'react-bootstrap';
+import { Table, Row, Col, Card, Image } from 'react-bootstrap';
 
 
 
@@ -12,31 +12,86 @@ export default function Home() {
 
         const coffees = [
             {
-                id: 1,
                 name: "Café con leche",
                 type: "Latte",
                 region: "Colombia",
+                date: "2023-08-02",
+                altitude: 1500,
+                notes: "Sabor dulce y cremoso",
             },
             {
-                id: 2,
-                name: "Capuccino",
+                name: "Capuchino",
                 type: "Capuccino",
                 region: "Italia",
+                date: "2023-07-20",
+                altitude: 1000,
+                notes: "Sabor intenso y cremoso",
             },
             {
-                id: 3,
                 name: "Mocha",
                 type: "Mocha",
                 region: "México",
+                date: "2023-06-15",
+                altitude: 1200,
+                notes: "Sabor chocolateado y especiado",
+            },
+            {
+                name: "Espresso",
+                type: "Espresso",
+                region: "Brasil",
+                date: "2023-05-01",
+                altitude: 800,
+                notes: "Sabor fuerte y concentrado",
+            },
+            {
+                name: "Americano",
+                type: "Americano",
+                region: "Guatemala",
+                date: "2023-04-10",
+                altitude: 1700,
+                notes: "Sabor suave y aromático",
+            },
+            {
+                name: "Filtro",
+                type: "Filtro",
+                region: "Costa Rica",
+                date: "2023-03-01",
+                altitude: 2000,
+                notes: "Sabor equilibrado y complejo",
+            },
+            {
+                name: "Cold brew",
+                type: "Cold brew",
+                region: "Perú",
+                date: "2023-02-15",
+                altitude: 1300,
+                notes: "Sabor suave y refrescante",
+            },
+            {
+                name: "Latte macchiato",
+                type: "Latte macchiato",
+                region: "Nicaragua",
+                date: "2023-01-20",
+                altitude: 900,
+                notes: "Sabor dulce y cremoso con notas de café",
+            },
+            {
+                name: "Macchiato",
+                type: "Macchiato",
+                region: "Honduras",
+                date: "2022-12-25",
+                altitude: 700,
+                notes: "Sabor fuerte y concentrado con notas de café",
             },
         ];
+
 
         const selectCoffee = (coffee) => () => {
             setCoffee(coffee)
         }
 
-        return (<Table striped bordered hover>
-            <thead>
+        return (<Table striped bordered hover class="table">
+            <thead class="thead-dark">
                 <tr>
                     <th>#</th>
                     <th>Nombre</th>
@@ -58,13 +113,23 @@ export default function Home() {
     }
 
 
-    const Detail = ({ coffee }) => {
-        return <div>
-            <h1>{coffee.name}</h1>
-            <p>{coffee.type}</p>
-            <p>{coffee.region}</p>
-        </div>
-    }
+    const CoffeeDetail = ({ coffee }) => {
+        return (
+            <Card>
+                <Card.Body>
+                    <Card.Title>{coffee.name}</Card.Title>
+                    <Card.Subtitle>{coffee.date}</Card.Subtitle>
+                    <Image src={coffee.image} alt={coffee.name} />
+                    <Card.Text>
+                        Notas: {coffee.notes} <br/>
+                        <strong>Cultivado a una altura de {coffee.altitude} msnm</strong>
+
+                    </Card.Text>
+                </Card.Body>
+            </Card>
+        );
+    };
+
 
     return <div>
         <Row>
@@ -72,7 +137,7 @@ export default function Home() {
                 <Tabla />
             </Col>
             <Col md={4}>
-                {coffee ? <Detail coffee={coffee} /> : null}
+                {coffee ? <CoffeeDetail coffee={coffee} /> : null}
             </Col>
         </Row>
 

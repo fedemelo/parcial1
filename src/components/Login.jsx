@@ -1,4 +1,3 @@
-import '../styles/TodoLogin.css';
 import { Form, Button } from 'react-bootstrap';
 import React from 'react';
 
@@ -13,8 +12,8 @@ export default function Login() {
 
 const LoginForm = () => {
 
-    const CORRECT_USERNAME = "fede"
-    const CORRECT_PASSWORD = "fede"
+    const CORRECT_USERNAME = "f.melo"
+    const CORRECT_PASSWORD = "202021525"
 
     const [formValues, setFormValues] = React.useState({
         userName: '',
