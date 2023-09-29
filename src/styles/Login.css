@@ -1,0 +1,25 @@
+#containerLogin{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    margin-top: 1in;
+    margin-bottom: 1in;
+    margin-right: 1in;
+    margin-left: 0in;
+    width: 400px;
+    height: 478px;
+}
+
+#titleLogin {
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: xx-large;
+    text-align: center;
+}
+
+#botonSubmit {
+    width: 200px;
+    border-radius: 15px;
+    margin-bottom: auto
+}

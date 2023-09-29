@@ -1,0 +1,21 @@
+#containerGB{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #B2CEC3;
+    margin-top: 1in;
+    margin-bottom: 1in;
+    margin-left: 1in;
+    margin-right: 0in;
+    width: 400px;
+    height: 478px;
+}
+
+#textGB {
+    color: white;
+    font-size: 30px;
+}
+
+#imgGB {
+    width: 300px;
+}
