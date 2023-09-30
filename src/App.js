@@ -4,10 +4,12 @@ import Home from './components/Home';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Container } from 'react-bootstrap';
+import './styles/App.css';
 
 const App = () => {
     return (
-        <>
+        <Container id="screen">
             <Header />
             <BrowserRouter>
                 <Routes>
@@ -17,7 +19,7 @@ const App = () => {
                 </Routes>
             </BrowserRouter>
             <Footer />
-        </>
+        </Container>
     );
 };
 

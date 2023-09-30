@@ -5,4 +5,14 @@
     font-size: 18px;
     line-height: 22px;
     text-align: center;
+
+    /* Centered */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    padding-top: 1.5ex;
+    padding-bottom: 1.5ex;
+    
 }

@@ -1,85 +1,97 @@
-import { Form, Button } from 'react-bootstrap';
 import React from 'react';
-
+import { Form, Button, Container } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../styles/Login.css'
 
 export default function Login() {
-    return <div>
-        <p> Inicio de sesión</p>
-        {/* <img/> */}
-        <LoginForm />
-    </div>
+    return <Container id="loginContainer">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Inter:wght@400;700&family=Nunito:wght@300;400&family=Open+Sans:wght@300;400&family=Poppins:wght@300;500&family=Space+Grotesk&display=swap');
+        </style>
+        <p className="loginText"> Inicio de sesión</p>
+        <div id="loginBox">
+            <LoginForm />
+        </div>
+    </Container>
 }
 
 const LoginForm = () => {
 
-    const CORRECT_USERNAME = "f.melo"
-    const CORRECT_PASSWORD = "202021525"
-
     const [formValues, setFormValues] = React.useState({
-        userName: '',
+        login: '',
         password: '',
     })
 
-
-    const [formValueIsValid, setFormValueIsValid] = React.useState({
+    const [formValueIsInvalid, setFormValueIsInvalid] = React.useState({
         userName: false,
         password: false,
     })
 
-    React.useEffect(() => {
-        setFormValueIsValid({
-            userName: formValues.userName === CORRECT_USERNAME,
-            password: formValues.password === CORRECT_PASSWORD,
-        })
-    }, [formValues])
+    const clickSubmit = async () => {
 
-    const clickSubmit = () => {
-        if (formValueIsValid.userName && formValueIsValid.password) {
+        const response = await fetch('http://localhost:3001/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formValues),
+        })
+        const data = await response.json()
+
+        if (data.status === "success") {
             window.location.href = "/home"
+        } else {
+            setFormValueIsInvalid({
+                userName: true,
+                password: true,
+            })
         }
     }
 
-
     const clickCancel = () => {
         setFormValues({
-            userName: '',
+            login: '',
             password: '',
         })
     }
 
-    return <Form >
-        <Form.Group className="mb-3">
-            <Form.Label>Nombre de usuario</Form.Label>
+    return <Form id="formBox">
+        <Form.Group>
+            <Form.Label className="loginText">Nombre de usuario</Form.Label>
             <Form.Control
+                id='userName'
                 onChange={(event) => setFormValues({
                     ...formValues,
-                    userName: event.target.value
+                    login: event.target.value
                 })}
-                isValid={formValueIsValid.userName}
-                isInvalid={!formValueIsValid.userName}
+                value={formValues.login}
+                isInvalid={formValueIsInvalid.userName}
             />
         </Form.Group>
 
-        <Form.Group className="mb-3">
-            <Form.Label>Password</Form.Label>
+        <Form.Group>
+            <Form.Label className="loginText">Contraseña</Form.Label>
             <Form.Control
+                id='password'
                 type="password"
                 placeholder="Password"
                 onChange={(event) => setFormValues({
                     ...formValues,
                     password: event.target.value
                 })}
-                isValid={formValueIsValid.password}
-                isInvalid={!formValueIsValid.password}
+                value={formValues.password}
+                isInvalid={formValueIsInvalid.password}
             />
         </Form.Group>
-        {(!formValueIsValid.userName || !formValueIsValid.password) && <Form.Text id="errorAuth">Error de autenticación. Revise sus credenciales</Form.Text>}
-        <br />
-        <Button id="botonIngresar" variant="success btn-lg" onClick={clickSubmit}>
-            Ingresar
-        </Button>
-        <Button id="botonCancelar" variant="danger btn-lg" onClick={clickCancel}>
-            Cancelar
-        </Button>
+        <Container id="loginButtons">
+            <Button id="submitButton" variant="success btn-lg" onClick={clickSubmit}>
+                Ingresar
+            </Button>
+            <Button id="cancelButton" variant="danger btn-lg" onClick={clickCancel}>
+                Cancelar
+            </Button>
+        </Container>
+        {(formValueIsInvalid.userName || formValueIsInvalid.password) && <Form.Text id="errorAuth" className='loginText'>Error de autenticación. Revise sus credenciales</Form.Text>}
+
     </Form>
 }
