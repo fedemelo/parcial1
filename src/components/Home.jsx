@@ -16,13 +16,13 @@ export default function Home() {
 
     const CoffeeTable = () => {
 
-        return <table className="table table-bordered table-hover" >
-            <thead className="thead-dark">
+        return <table className="table" >
+            <thead className="table-dark" id="tableHead">
                 <tr>
-                    <th>#</th>
-                    <th>Nombre</th>
-                    <th>Tipo</th>
-                    <th>Región</th>
+                    <th className="align-middle">#</th>
+                    <th className="align-middle"> Nombre</th>
+                    <th className="align-middle">Tipo</th>
+                    <th className="align-middle">Región</th>
                 </tr>
             </thead>
             <tbody>
@@ -31,10 +31,10 @@ export default function Home() {
                         console.log(coffee)
                         setSelectedCoffee(coffee)
                     }}>
-                        <td>{coffee.id}</td>
-                        <td>{coffee.nombre}</td>
-                        <td>{coffee.tipo}</td>
-                        <td>{coffee.region}</td>
+                        <td className="align-middle"><strong>{coffee.id}</strong></td>
+                        <td className="align-middle">{coffee.nombre}</td>
+                        <td className="align-middle">{coffee.tipo}</td>
+                        <td className="align-middle">{coffee.region}</td>
                     </tr>
                 ))}
             </tbody>
