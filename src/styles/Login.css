@@ -1,8 +1,8 @@
-#loginContainer{
+#loginContainer {
     display: flex;
     flex-direction: column;
-    
-    width: 70%;
+
+    width: 72%;
 
 }
 
@@ -13,11 +13,14 @@
 }
 
 .loginText {
-    font-family: 'Inter';
-    font-style: normal;
+    font-family: Inter;
+    font-size: 20px;
     font-weight: 700;
-    font-size: 15px;
-    color: #000000;
+    line-height: 24px;
+    min-block-size: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+
     padding-top: 1.5ex;
     margin-bottom: 0ex;
 }
@@ -26,8 +29,6 @@
     color: #CD3232;
     padding: 0;
     margin: 0;
-    margin-top: -1.5ex;
-    margin-bottom: 1ex;
 }
 
 
@@ -50,39 +51,49 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-#userName, #password {
+#userName,
+#password {
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 24px;
+
+    margin-top: 7px;
+
+    height: 55px;
+
     background-color: #D9D9D9;
     border-radius: 0;
-
 }
 
-#submitButton, #cancelButton {
+#submitButton,
+#cancelButton {
     border-radius: 0;
+    border-width: 0;
     width: 13em;
     padding: 0.5em;
     font-weight: bold;
     height: 4.5ex;
-    /* Vertically center-align */
+
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: row;
 
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: center;
 
     margin-top: 1.5ex;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 15px;
-    color: #000000;
-    padding-top: 1.5ex;
-    margin-bottom: 0ex;
+    margin-bottom: 2ex;
 }
 
 #submitButton {
     background-color: #8FA98F;
     color: black;
-    /* xd */
 }
 
 #cancelButton {
@@ -91,15 +102,22 @@
 }
 
 
+#loginButtonsText {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 2.5ex;
+}
+
 #loginButtons {
-    padding-top: 1ex;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 100%;
+    gap: 3em;
     padding: 0;
-    margin-bottom: 2.5ex;
+    margin: 0;
 }
+
 
 #password {
     margin-bottom: 1.5ex;

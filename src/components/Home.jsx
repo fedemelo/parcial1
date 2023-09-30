@@ -1,90 +1,20 @@
 import React from "react";
-import { Row, Col, Card, Image } from 'react-bootstrap';
+import { Row, Col, Card, Image, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/Home.css';
 
 export default function Home() {
 
-    const [coffee, setCoffee] = React.useState(null)
+    const [selectedCoffee, setSelectedCoffee] = React.useState(null)
+    const [coffees, setCoffees] = React.useState([])
 
-    const coffees = [
-        {
-            name: "Café con leche",
-            type: "Latte",
-            region: "Colombia",
-            date: "2023-08-02",
-            altitude: 1500,
-            notes: "Sabor dulce y cremoso",
-        },
-        {
-            name: "Capuchino",
-            type: "Capuccino",
-            region: "Italia",
-            date: "2023-07-20",
-            altitude: 1000,
-            notes: "Sabor intenso y cremoso",
-        },
-        {
-            name: "Mocha",
-            type: "Mocha",
-            region: "México",
-            date: "2023-06-15",
-            altitude: 1200,
-            notes: "Sabor chocolateado y especiado",
-        },
-        {
-            name: "Espresso",
-            type: "Espresso",
-            region: "Brasil",
-            date: "2023-05-01",
-            altitude: 800,
-            notes: "Sabor fuerte y concentrado",
-        },
-        {
-            name: "Americano",
-            type: "Americano",
-            region: "Guatemala",
-            date: "2023-04-10",
-            altitude: 1700,
-            notes: "Sabor suave y aromático",
-        },
-        {
-            name: "Filtro",
-            type: "Filtro",
-            region: "Costa Rica",
-            date: "2023-03-01",
-            altitude: 2000,
-            notes: "Sabor equilibrado y complejo",
-        },
-        {
-            name: "Cold brew",
-            type: "Cold brew",
-            region: "Perú",
-            date: "2023-02-15",
-            altitude: 1300,
-            notes: "Sabor suave y refrescante",
-        },
-        {
-            name: "Latte macchiato",
-            type: "Latte macchiato",
-            region: "Nicaragua",
-            date: "2023-01-20",
-            altitude: 900,
-            notes: "Sabor dulce y cremoso con notas de café",
-        },
-        {
-            name: "Macchiato",
-            type: "Macchiato",
-            region: "Honduras",
-            date: "2022-12-25",
-            altitude: 700,
-            notes: "Sabor fuerte y concentrado con notas de café",
-        },
-    ];
+    React.useEffect(() => {
+        fetch('http://localhost:3001/cafes')
+            .then(response => response.json())
+            .then(data => setCoffees(data))
+    }, [])
 
     const CoffeeTable = () => {
-
-        const selectCoffee = (coffee) => () => setCoffee(coffee)
 
         return <table className="table table-bordered table-hover" >
             <thead className="thead-dark">
@@ -97,10 +27,13 @@ export default function Home() {
             </thead>
             <tbody>
                 {coffees.map((coffee, index) => (
-                    <tr key={index} onClick={selectCoffee(coffee)}>
+                    <tr key={index} onClick={() => {
+                        console.log(coffee)
+                        setSelectedCoffee(coffee)
+                    }}>
                         <td>{coffee.id}</td>
-                        <td>{coffee.name}</td>
-                        <td>{coffee.type}</td>
+                        <td>{coffee.nombre}</td>
+                        <td>{coffee.tipo}</td>
                         <td>{coffee.region}</td>
                     </tr>
                 ))}
@@ -109,29 +42,44 @@ export default function Home() {
     }
 
 
-    const CoffeeDetail = ({ coffee }) => <Card>
-        <Card.Body>
-            <Card.Title>{coffee.name}</Card.Title>
-            <Card.Subtitle>{coffee.date}</Card.Subtitle>
-            <Image src={coffee.image} alt={coffee.name} />
-            <Card.Text>
-                Notas: {coffee.notes} <br />
-                <strong>Cultivado a una altura de {coffee.altitude} msnm</strong>
+    const CoffeeDetail = () => {
 
-            </Card.Text>
-        </Card.Body>
-    </Card>
+        const [coffee, setCoffee] = React.useState(null)
 
+        React.useEffect(() => {
+            fetch(`http://localhost:3001/cafes/${selectedCoffee.id}`)
+                .then(response => response.json())
+                .then(data => setCoffee(data))
+                .catch(error => console.log(error))
+        }, [selectedCoffee])
 
-    return <div>
-        <Row>
-            <Col md={8}>
-                <CoffeeTable id="coffeeTable"/>
-            </Col>
-            <Col md={4}>
-                {coffee ? <CoffeeDetail coffee={coffee} /> : null}
-            </Col>
-        </Row>
-    </div>
+        if (!coffee) {
+            return null
+        }
+
+        return < Card id="coffeeCard">
+            <style>
+                @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Inter:wght@400;700;900&family=Nunito:wght@300;400&family=Open+Sans:wght@300;400&family=Poppins:wght@300;500&family=Space+Grotesk&display=swap');
+            </style>
+            <Card.Body id="coffeeBody">
+                <Card.Title id="coffeeTitle">{coffee.nombre}</Card.Title>
+                <Card.Subtitle id="coffeeDate">{coffee.fecha_cultivo}</Card.Subtitle>
+                <Container id="coffeeImageContainer">
+                    <Image id="coffeeImage" src={coffee.imagen} alt={`Imagen del café ${coffee.nombre}`} />
+                </Container>
+                <Card.Text id="coffeeNotes">Notas<br />{coffee.notas} </Card.Text>
+                <Card.Text id="coffeeAltitude">Cultivado a una altura de<br />{coffee.altura} msnm</Card.Text>
+            </Card.Body>
+        </Card >
+    }
+
+    return <Row id="homeRow">
+        <Col md={8}>
+            <CoffeeTable id="coffeeTable" />
+        </Col>
+        <Col md={4}>
+            {selectedCoffee ? <CoffeeDetail /> : null}
+        </Col>
+    </Row>
 }
 

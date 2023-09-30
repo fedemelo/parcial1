@@ -74,7 +74,6 @@ const LoginForm = () => {
             <Form.Control
                 id='password'
                 type="password"
-                placeholder="Password"
                 onChange={(event) => setFormValues({
                     ...formValues,
                     password: event.target.value
@@ -83,15 +82,16 @@ const LoginForm = () => {
                 isInvalid={formValueIsInvalid.password}
             />
         </Form.Group>
-        <Container id="loginButtons">
-            <Button id="submitButton" variant="success btn-lg" onClick={clickSubmit}>
-                Ingresar
-            </Button>
-            <Button id="cancelButton" variant="danger btn-lg" onClick={clickCancel}>
-                Cancelar
-            </Button>
+        <Container id="loginButtonsText">
+            <Container id="loginButtons">
+                <Button id="submitButton" variant="success btn-lg" onClick={clickSubmit}>
+                    Ingresar
+                </Button>
+                <Button id="cancelButton" variant="danger btn-lg" onClick={clickCancel}>
+                    Cancelar
+                </Button>
+            </Container>
+            <Form.Text id="errorAuth" className='loginText'>{(formValueIsInvalid.userName || formValueIsInvalid.password) ? "Error de autenticación. Revise sus credenciales" : ""}</Form.Text>
         </Container>
-        {(formValueIsInvalid.userName || formValueIsInvalid.password) && <Form.Text id="errorAuth" className='loginText'>Error de autenticación. Revise sus credenciales</Form.Text>}
-
     </Form>
 }

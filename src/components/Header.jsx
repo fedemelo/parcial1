@@ -5,7 +5,7 @@ import '../styles/Header.css'
 import { Container } from 'react-bootstrap';
 
 export default function Header() {
-    return <Container id="header">
+    return <Container id="headerContainer">
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Nunito:wght@400;500&family=Open+Sans:wght@300;400&family=Poppins:wght@300;500&family=Space+Grotesk&display=swap');
         </style>
