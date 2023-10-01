@@ -51,7 +51,7 @@ export default function Home() {
                 .then(response => response.json())
                 .then(data => setCoffee(data))
                 .catch(error => console.log(error))
-        }, [selectedCoffee])
+        }, [])
 
         if (!coffee) {
             return null
