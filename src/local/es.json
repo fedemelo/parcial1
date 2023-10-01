@@ -1,7 +1,7 @@
 {
     "pageTitle": "El aroma mágico",
 
-    "contactUS": "Contáctanos",
+    "contactUs": "Contáctanos",
 
     "login": "Inicio de sesión",
     "username": "Nombre de usuario",
@@ -15,6 +15,6 @@
 
     "notes": "Notas",
     "altitudeMessage": "Cultivado a una altura de",
-    "altitudUnit": "msnm"
+    "altitudeUnit": "msnm"
 
 }

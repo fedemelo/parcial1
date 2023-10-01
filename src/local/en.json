@@ -1,7 +1,7 @@
 {
     "pageTitle": "The Magical Aroma",
 
-    "contactUS": "Contact Us",
+    "contactUs": "Contact Us",
 
     "login": "Login",
     "username": "Username",
@@ -15,5 +15,5 @@
 
     "notes": "Notes",
     "altitudeMessage": "Cultivated at an altitude of",
-    "altitudUnit": "meters above sea level"
+    "altitudeUnit": "meters above sea level"
 }

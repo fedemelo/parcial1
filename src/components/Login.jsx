@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
+import { FormattedMessage } from 'react-intl';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/Login.css'
 
@@ -8,7 +9,7 @@ export default function Login() {
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Inter:wght@400;700&family=Nunito:wght@300;400&family=Open+Sans:wght@300;400&family=Poppins:wght@300;500&family=Space+Grotesk&display=swap');
         </style>
-        <p className="loginText"> Inicio de sesión</p>
+        <p className="loginText"> <FormattedMessage id="login" /></p>
         <div id="loginBox">
             <LoginForm />
         </div>
@@ -57,7 +58,7 @@ const LoginForm = () => {
 
     return <Form id="formBox">
         <Form.Group>
-            <Form.Label className="loginText">Nombre de usuario</Form.Label>
+            <Form.Label className="loginText"><FormattedMessage id="username" /></Form.Label>
             <Form.Control
                 id='userName'
                 onChange={(event) => setFormValues({
@@ -70,7 +71,7 @@ const LoginForm = () => {
         </Form.Group>
 
         <Form.Group>
-            <Form.Label className="loginText">Contraseña</Form.Label>
+            <Form.Label className="loginText"><FormattedMessage id="password" /></Form.Label>
             <Form.Control
                 id='password'
                 type="password"
@@ -85,10 +86,10 @@ const LoginForm = () => {
         <Container id="loginButtonsText">
             <Container id="loginButtons">
                 <Button id="submitButton" variant="success btn-lg" onClick={clickSubmit}>
-                    Ingresar
+                    <FormattedMessage id="loginButton" />
                 </Button>
                 <Button id="cancelButton" variant="danger btn-lg" onClick={clickCancel}>
-                    Cancelar
+                    <FormattedMessage id="cancelButton" />
                 </Button>
             </Container>
             <Form.Text id="errorAuth" className='loginText'>{(formValueIsInvalid.userName || formValueIsInvalid.password) ? "Error de autenticación. Revise sus credenciales" : ""}</Form.Text>

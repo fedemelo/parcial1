@@ -1,7 +1,7 @@
 {
     "pageTitle": "Der magische Duft",
 
-    "contactUS": "Kontaktiere uns",
+    "contactUs": "Kontaktiere uns",
 
     "login": "Anmelden",
     "username": "Benutzername",
@@ -15,5 +15,5 @@
 
     "notes": "Notizen",
     "altitudeMessage": "Angebaut auf einer Höhe von",
-    "altitudUnit": "m über dem Meeresspiegel"
+    "altitudeUnit": "m über dem Meeresspiegel"
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import { Row, Col, Card, Image, Container } from 'react-bootstrap';
+import { FormattedMessage } from "react-intl";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/Home.css';
 
@@ -20,9 +21,9 @@ export default function Home() {
             <thead className="table-dark" id="tableHead">
                 <tr>
                     <th className="align-middle">#</th>
-                    <th className="align-middle"> Nombre</th>
-                    <th className="align-middle">Tipo</th>
-                    <th className="align-middle">Región</th>
+                    <th className="align-middle"> <FormattedMessage id="name" /></th>
+                    <th className="align-middle"><FormattedMessage id="type" /></th>
+                    <th className="align-middle"><FormattedMessage id="region" /></th>
                 </tr>
             </thead>
             <tbody>
@@ -67,8 +68,8 @@ export default function Home() {
                 <Container id="coffeeImageContainer">
                     <Image id="coffeeImage" src={coffee.imagen} alt={`Imagen del café ${coffee.nombre}`} />
                 </Container>
-                <Card.Text id="coffeeNotes">Notas<br />{coffee.notas} </Card.Text>
-                <Card.Text id="coffeeAltitude">Cultivado a una altura de<br />{coffee.altura} msnm</Card.Text>
+                <Card.Text id="coffeeNotes"><FormattedMessage id="notes" /><br />{coffee.notas} </Card.Text>
+                <Card.Text id="coffeeAltitude"><FormattedMessage id="altitudeMessage" /><br />{coffee.altura} <FormattedMessage id="altitudeUnit" /></Card.Text>
             </Card.Body>
         </Card >
     }
