@@ -1,6 +1,6 @@
 import React from "react";
 import { Row, Col, Card, Image, Container } from 'react-bootstrap';
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, FormattedDate } from "react-intl";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/Home.css';
 
@@ -64,7 +64,14 @@ export default function Home() {
             </style>
             <Card.Body id="coffeeBody">
                 <Card.Title id="coffeeTitle">{coffee.nombre}</Card.Title>
-                <Card.Subtitle id="coffeeDate">{coffee.fecha_cultivo}</Card.Subtitle>
+                <Card.Subtitle id="coffeeDate">
+                    {coffee.fecha_cultivo?<FormattedDate
+                        value={new Date(coffee.fecha_cultivo)}
+                        year='numeric'
+                        month='numeric'
+                        day='numeric'
+                    />:"⠀"}
+                </Card.Subtitle>
                 <Container id="coffeeImageContainer">
                     <Image id="coffeeImage" src={coffee.imagen} alt={`Imagen del café ${coffee.nombre}`} />
                 </Container>
